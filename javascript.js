@@ -5,8 +5,7 @@ async function getMenu () {
     try{
         let response = await fetch('file.json');
         const results = await response.json()
-        await displayMenu(results);
-       
+        await displayMenu(results);       
     }
     catch(error){
         console.log("Error: ", error);
@@ -14,14 +13,15 @@ async function getMenu () {
 }
 let count = 0;
 let containMenu = document.getElementById("container");
+
 function displayMenu(menuList) {
    // alert("Choose food")
 
     menuList.forEach((menu)=>{
         let menuCard = document.createElement("div");
         menuCard.className = "menuCard";
-       
-       let span = document.createElement("span");
+
+        let span = document.createElement("span");
         span.className = "id";
         span.innerText = `${menu.id}`;
         menuCard.appendChild(span);
@@ -45,15 +45,6 @@ function displayMenu(menuList) {
 
         menuCard.appendChild(div);
 
-//         menuCard.innerHTML = `
-//             <span class="id">${menu.id}</span>
-//             <img src="${menu.imgSrc}" alt="img">
-//             <div class="food-price">
-//             <h3 class="foodName">${menu.name}</h3>
-//             <p class="price">${menu.price}</p>
-//             </div>
-//             `;
-       
         containMenu.append(menuCard);
         //on cicking
         menuCard.addEventListener("click", ()=>{
@@ -66,12 +57,8 @@ function displayMenu(menuList) {
 }
 
 var orderObject = [];
-//[{"id": 1,"name": "Cheeseburger","price": 5.99,
-    //     order_status: true,
-    //     paid: false}]
 
-async function takeOrder() {
-   
+async function takeOrder() {  
     return new Promise((resolve)=>{
         setTimeout(()=>{
              //choose any 3 burgers randomly and 
@@ -81,47 +68,64 @@ async function takeOrder() {
         orderObject = {
           burgersToAdd: burgersToAdd.sort(() => Math.random() - 0.5).slice(0, 3),
         };}
-        
+
             resolve(orderObject);
         },2500);
     }) 
 }
-let orderInfo = [];
+// let orderInfo = [];
  function orderPrep() {
    // alert("Order Status: Bill Payment ")
     return new Promise((resolve) => {
         setTimeout(() => {
-           orderInfo = {
+          let orderInfo = {
             order_status: true,
             paid: false
           };
-          resolve(orderInfo);
-          
+          resolve(orderInfo);  
         },1500);
-    })
-    //return {order_status:true; paid:false}
+    })   
 }
 
  function payOrder() {
    //alert("Order Status: Payment Successful")
     return new Promise((resolve) => {
         setTimeout(() => {
-        //   const orderInfo = {
-        //     order_status: true,
-        //     paid: true
-        //   };
-        orderInfo.paid = true;
+          const orderInfo = {
+            order_status: true,
+            paid: true
+          };
           resolve(orderInfo);
         },1000);
     })
-    //return {order_status:true; paid:true}
-
 }
 
 function thankyouFnc() {
-    //- Once {paid:true} is received
         alert("Thankyou for eating with us today!")
 }
+
+async function executeAllPromises() {
+    try {
+        await getMenu();
+        alert("Order Food")
+      const order = await takeOrder();
+      console.log("Take Order:", order);
+
+      const orderStatus = await orderPrep();
+      console.log("Order Status:", orderStatus);
+
+      const paymentStatus = await payOrder();
+      console.log("Payment Status:", paymentStatus);
+
+      thankyouFnc();
+
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  }
+
+  //Run the script
+  window.onload =  executeAllPromises();
 
 // window.onload = function() {
 //     getMenu();
@@ -146,26 +150,4 @@ function thankyouFnc() {
 
 
 
- async function executeAllPromises() {
-    try {
-        await getMenu();
-        alert("Order Food")
-      const order = await takeOrder();
-      console.log("Take Order:", order);
-
-      const orderStatus = await orderPrep();
-      console.log("Order Status:", orderStatus);
-
-      const paymentStatus = await payOrder();
-      console.log("Payment Status:", paymentStatus);
-
-      thankyouFnc();
-
-    } catch (error) {
-      console.log("Error: ", error);
-    }
-  }
-
-  //Run the script
-  window.onload =  executeAllPromises();
-
+ 
