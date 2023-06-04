@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Restaurant</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: repeat(3 , 3fr);
+            gap: 25px;
+            margin: 50px 60px 50px 70px;
+        }
+        .menuCard{
+            width: 302px;
+            box-sizing: border-box;
+            border: 2px solid rgb(182, 179, 179, 0.5);
+            /* border-radius: 8px; */
+            /* padding: 0 5px 5px 10px; */
+            margin: 0;
+            background-color:silver ;
+            position: relative;
+        }
+        .menuCard:hover{
+            scale: 1.1;
+            border: 1px solid rgba(45, 45, 255, 0.932);
+        }
+        .menuCard > img{
+           
+            width: 300px; 
+            height: auto;
+        }
+        .id{
+            position: absolute;
+            margin-top: -5px;
+            margin-left: -3px;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: black;
+            color: gold;
+            width: 15px;
+            height: 20px;
+            text-align: center;
+        }
+        .food-price{
+            padding: 5px;
+            /* border: 2px solid black; */
+        }
+        .foodName{
+            margin: 5px;
+        }
+        .price{
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+     <h1 style="text-align: center;">Welcome To Restaurant!</h1>
+    <h2 style="text-align: center;">Menu Card</h2>
+
+    <div id="container">
+        <!-- <div class="menuCard">
+            <span class="id">${menu.id}</span>
+        <img src="${menu.imgSrc}" style="width: 250px; height: 150px;" alt="img">
+        <div class="food-price">
+        <h3 class="foodName">${menu.name}</h3>
+        <p class="price">${menu.price}</p>
+        </div>
+        </div> -->
+    </div>
+    <script src="javascript.js"></script>
+</body>
+</html>
