@@ -20,14 +20,40 @@ function displayMenu(menuList) {
     menuList.forEach((menu)=>{
         let menuCard = document.createElement("div");
         menuCard.className = "menuCard";
-        menuCard.innerHTML = `
-            <span class="id">${menu.id}</span>
-            <img src="${menu.imgSrc}" alt="img">
-            <div class="food-price">
-            <h3 class="foodName">${menu.name}</h3>
-            <p class="price">${menu.price}</p>
-            </div>
-            `;
+       
+       let span = document.createElement("span");
+        span.className = "id";
+        span.innerText = `${menu.id}`;
+        menuCard.appendChild(span);
+
+        let img = document.createElement("img");
+        img.src = `${menu.imgSrc}`;
+        menuCard.appendChild(img);
+
+        let div = document.createElement("div");
+        div.className = "food-price";
+
+        let h3 = document.createElement("h3");
+        h3.className = "foodName";
+        h3.innerText = `${menu.name}`;
+        div.appendChild(h3);
+
+        let p = document.createElement("p");
+        p.className = "price";
+        p.innerText = `${menu.price}`;
+        div.appendChild(p);
+
+        menuCard.appendChild(div);
+
+//         menuCard.innerHTML = `
+//             <span class="id">${menu.id}</span>
+//             <img src="${menu.imgSrc}" alt="img">
+//             <div class="food-price">
+//             <h3 class="foodName">${menu.name}</h3>
+//             <p class="price">${menu.price}</p>
+//             </div>
+//             `;
+       
         containMenu.append(menuCard);
         //on cicking
         menuCard.addEventListener("click", ()=>{
